@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FLORA~💜 Portfolio</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Dancing+Script:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+    /* Day/Night Mode Variables */
+    :root {
+        --bg-primary: #120016;
+        --bg-secondary: #161b26;
+        --text-primary: #ffffff;
+        --text-secondary: #9aa0b8;
+        --accent-pink: #ff5fa2;
+        --accent-purple: #c084fc;
+        --accent-blue: #3b82f6;
+        --accent-light: #ffc0da;
+        --gradient-1: linear-gradient(90deg, #ff5fa2, #ffc0da, #c084fc);
+        --gradient-2: linear-gradient(135deg, #ff5fa2, #c084fc);
+        --gradient-3: linear-gradient(135deg, #3b82f6, #8b5cf6);
+        --gradient-bg-1: radial-gradient(circle, #ff5fa2, transparent);
+        --gradient-bg-2: radial-gradient(circle, #3b82f6, transparent);
+        --gradient-bg-3: radial-gradient(circle, #ffc0da, transparent);
+        --shadow-color: rgba(255, 95, 162, 0.5);
+        --header-bg: rgba(18, 0, 22, 0.7);
+        --footer-bg: rgba(18, 0, 22, 0.7);
+    }
+    
+    
+        --bg-primary: #f0f4ff;
+        --bg-secondary: #e6e9ff;
+        --text-primary: #1a1a2e;
+        --text-secondary: #4a4a6e;
+        --accent-pink: #ff2d75;
+        --accent-purple: #9d4edd;
+        --accent-blue: #4361ee;
+        --accent-light: #ff85b3;
+        --gradient-1: linear-gradient(90deg, #ff2d75, #ff85b3, #9d4edd);
+        --gradient-2: linear-gradient(135deg, #ff2d75, #9d4edd);
+        --gradient-3: linear-gradient(135deg, #4361ee, #7b2cbf);
+        --gradient-bg-1: radial-gradient(circle, #ff2d75, transparent);
+        --gradient-bg-2: radial-gradient(circle, #4361ee, transparent);
+        --gradient-bg-3: radial-gradient(circle, #ffb6d9, transparent);
+        --shadow-color: rgba(255, 45, 117, 0.4);
+        --header-bg: rgba(240, 244, 255, 0.8);
+        --footer-bg: rgba(240, 244, 255, 0.8);
+    }
+    
+    * { 
+        margin:0; 
+        padding:0; 
+        box-sizing:border-box; 
+        font-family:'Poppins', 'Montserrat', sans-serif; 
+    }
+    
+    body { 
+        background:var(--bg-primary); 
+        color:var(--text-primary); 
+        overflow-x:hidden;
+        position: relative;
+        transition: background-color 0.5s ease, color 0.5s ease;
+    }
+    
+    /* Day/Night Toggle Button */
+    .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        width: 60px;
+        height: 30px;
+        background: var(--bg-secondary);
+        border-radius: 50px;
+        display: flex;
+        align-items: center;
+        padding: 5px;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+    }
+    
+    .theme-toggle:hover {
+        transform: scale(1.05);
+    }
+    
+    .toggle-slider {
+        width: 22px;
+        height: 22px;
+        background: var(--accent-pink);
+        border-radius: 50%;
+        transition: transform 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 10px;
+    }
+    
+    [data-theme="day"] .toggle-slider {
+        transform: translateX(30px);
+        background: var(--accent-blue);
+    }
+    
+    .theme-toggle i {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 14px;
+        color: var(--text-primary);
+    }
+    
+    .fa-moon {
+        left: 10px;
+    }
+    
+    .fa-sun {
+        right: 10px;
+    }
+    
+    /* Music Player */
+    .music-player {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+        background: var(--bg-secondary);
+        border-radius: 50px;
+        padding: 10px 20px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+    }
+    
+    .music-player:hover {
+        transform: translateY(-5px);
+    }
+    
+    .music-info {
+        max-width: 200px;
+        text-align: center;
+    }
+    
+    .music-title {
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--accent-pink);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    .music-artist {
+        font-size: 10px;
+        color: var(--text-secondary);
+    }
+    
+    .music-controls {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .music-btn {
+        background: transparent;
+        border: none;
+        color: var(--accent-pink);
+        font-size: 18px;
+        cursor: pointer;
+        transition: color 0.3s ease;
+    }
+    
+    .music-btn:hover {
+        color: var(--accent-purple);
+    }
+    
+    .volume-slider {
+        width: 80px;
+        height: 4px;
+        background: var(--text-secondary);
+        border-radius: 2px;
+        outline: none;
+        -webkit-appearance: none;
+    }
+    
+    .volume-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: var(--accent-pink);
+        cursor: pointer;
+    }
+    
+    .flower-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: start;
+        z-index: 0; 
+        pointer-events: none; 
+    }
+    
+    .clean-btn {
+        z-index: 1;
+        font-family: sans-serif;
+        font-size: 15px;
+        color: white;
+        text-shadow: 0 0 10px #000000;
+        user-select: none;
+        padding: 0 0 15px 25px;
+        cursor: pointer;
+        text-decoration: underline;
+        opacity: .5;
+        pointer-events: auto; 
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+    }
+    
+    #canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+    }
+    
+    .flower-instruction {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        transform: translate(-50%, -50%);
+        color: white;
+        text-align: center;
+        font-size: 4vw;
+        text-shadow: 0 0 5px #000000;
+        user-select: none;
+        pointer-events: none;
+        z-index: 0;
+        opacity: 0.5;
+    }
+
+    @media all and (min-width: 640px) {
+        .flower-instruction {
+            font-size: 45px
+        }
+    }
+    
+    .bg-circle {
+        position: fixed;
+        border-radius: 50%;
+        filter: blur(80px);
+        opacity: 0.4;
+        z-index: -1;
+        animation: float 15s ease-in-out infinite;
+    }
+    
+    .circle-1 {
+        width: 500px;
+        height: 500px;
+        background: var(--gradient-bg-1);
+        top: -200px;
+        left: -100px;
+        animation-delay: 0s;
+    }
+    
+    .circle-2 {
+        width: 400px;
+        height: 400px;
+        background: var(--gradient-bg-2);
+        bottom: -150px;
+        right: -100px;
+        animation-delay: 5s;
+    }
+    
+    .circle-3 {
+        width: 300px;
+        height: 300px;
+        background: var(--gradient-bg-3);
+        top: 50%;
+        left: 70%;
+        animation-delay: 10s;
+    }
+    
+    /* Header */
+    header { 
+        height:100vh; 
+        display:flex; 
+        align-items:center; 
+        justify-content:space-between; 
+        padding:0 6%; 
+        text-align:left;
+        position: relative;
+        z-index: 20; 
+        background: var(--header-bg);
+    }
+
+    .text-zone { 
+        max-width:50%; 
+        text-align:left; 
+    }
+    
+    .text-zone h1 { 
+        font-size:4.5rem; 
+        font-weight:800; 
+        line-height:1.1; 
+        animation:slideDown 1s ease-out; 
+        background: var(--gradient-1);
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: gradientShift 3s ease infinite;
+        font-family: 'Dancing Script', cursive;
+    }
+    
+    .text-zone h2 { 
+        font-size:1.6rem; 
+        margin-top:10px; 
+        opacity:0.8; 
+        animation:fadeIn 1.5s ease-out; 
+        color: var(--accent-light);
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
+    }
+
+    .tagline { 
+        margin-top:20px; 
+        font-size:1.2rem; 
+        color:var(--text-secondary); 
+        animation:fadeInUp 1.2s ease-out;
+        max-width: 90%;
+        line-height: 1.6;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 300;
+    }
+    
+    .highlight {
+        color: var(--accent-pink);
+        font-weight: 600;
+    }
+
+    .pfp { 
+        position: relative;
+        z-index: 20;
+    }
+    
+    .pfp img { 
+        width:320px; 
+        height:320px; 
+        border-radius:50%; 
+        object-fit:cover; 
+        border:4px solid transparent;
+        animation:popIn 1s ease-out, borderGlow 3s ease-in-out infinite;
+        box-shadow: 0 0 30px var(--shadow-color);
+        transition: transform 0.5s ease;
+    }
+    
+    .pfp img:hover {
+        transform: scale(1.05);
+    }
+    
+    .floating-icons {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 1;
+    }
+    
+    .floating-icon {
+        position: absolute;
+        font-size: 1.5rem;
+        opacity: 0.6;
+        animation: floatIcon 6s ease-in-out infinite;
+        color: var(--accent-pink);
+    }
+    
+    .floating-icon:nth-child(1) { top: 10%; left: 15%; color: var(--accent-pink); animation-delay: 0s; }
+    .floating-icon:nth-child(2) { top: 70%; left: 10%; color: var(--accent-blue); animation-delay: 1s; }
+    .floating-icon:nth-child(3) { top: 20%; right: 15%; color: var(--accent-light); animation-delay: 2s; }
+    .floating-icon:nth-child(4) { top: 80%; right: 20%; color: var(--accent-purple); animation-delay: 3s; }
+    .floating-icon:nth-child(5) { top: 40%; left: 5%; color: var(--accent-pink); animation-delay: 4s; }
+    
+    section { 
+        padding:80px 6%; 
+        position: relative;
+        z-index: 20;
+        background: var(--header-bg);
+    }
+
+    .skills h1 { 
+        font-size:2.8rem; 
+        margin-bottom:30px;
+        background: var(--gradient-2);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        font-family: 'Dancing Script', cursive;
+    }
+    
+    .skill-box { 
+        display:flex; 
+        gap:20px; 
+        flex-wrap:wrap; 
+    }
+    
+    .skill { 
+        background:var(--bg-secondary); 
+        padding:18px 24px; 
+        border-radius:16px; 
+        font-size:1.1rem; 
+        border:1px solid transparent;
+        transition:0.4s;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        cursor: pointer;
+        color: var(--text-primary);
+        font-family: 'Montserrat', sans-serif;
+    }
+    
+    .skill::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 95, 162, 0.2), transparent);
+        transition: left 0.7s;
+        z-index: -1;
+    }
+    
+    .skill:hover::before {
+        left: 100%;
+    }
+    
+    .skill:hover { 
+        background: var(--gradient-2);
+        transform:translateY(-8px) scale(1.05);
+        box-shadow: 0 10px 25px var(--shadow-color);
+        border-color: var(--accent-pink);
+    }
+    
+    .contact h1 {
+        font-size:2.8rem; 
+        margin-bottom:30px;
+        background: var(--gradient-3);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        font-family: 'Dancing Script', cursive;
+    }
+    
+    .contact-links { 
+        display:flex; 
+        gap:25px; 
+        margin-top:20px; 
+        flex-wrap:wrap; 
+    }
+    
+    .contact-link { 
+        background: var(--gradient-3);
+        padding:15px 30px; 
+        border-radius:12px; 
+        color:white; 
+        text-decoration:none; 
+        font-weight:600;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: 0.4s;
+        border: none;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        font-family: 'Montserrat', sans-serif;
+    }
+    
+    .contact-link::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+        opacity: 0;
+        transition: opacity 0.4s;
+        z-index: -1;
+    }
+    
+    .contact-link:hover::before {
+        opacity: 1;
+    }
+    
+    .contact-link:hover { 
+        transform:translateY(-5px) scale(1.05);
+        box-shadow: 0 10px 20px rgba(59, 130, 246, 0.4);
+    }
+    
+    footer { 
+        text-align:center; 
+        padding:50px 40px; 
+        opacity:0.8; 
+        font-size: 1.1rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        position: relative;
+        z-index: 20;
+        background: var(--footer-bg);
+    }
+    
+    footer span {
+        color: var(--accent-pink);
+    }
+    
+    @keyframes slideDown { 
+        from{opacity:0; transform:translateY(-40px);} 
+        to{opacity:1; transform:translateY(0);} 
+    }
+    
+    @keyframes fadeIn { 
+        from{opacity:0;} 
+        to{opacity:1;} 
+    }
+    
+    @keyframes fadeInUp { 
+        from{opacity:0; transform:translateY(30px);} 
+        to{opacity:1; transform:translateY(0);} 
+    }
+    
+    @keyframes popIn { 
+        from{opacity:0; transform:scale(0.6);} 
+        to{opacity:1; transform:scale(1);} 
+    }
+    
+    @keyframes float { 
+        0%{transform:translateY(0) rotate(0deg);} 
+        50%{transform:translateY(-30px) rotate(5deg);} 
+        100%{transform:translateY(0) rotate(0deg);} 
+    }
+    
+    @keyframes floatIcon {
+        0%{transform:translateY(0) rotate(0deg);} 
+        50%{transform:translateY(-20px) rotate(10deg);} 
+        100%{transform:translateY(0) rotate(0deg);} 
+    }
+    
+    @keyframes borderGlow {
+        0%{border-color: var(--accent-pink); box-shadow: 0 0 20px var(--shadow-color);}
+        50%{border-color: var(--accent-purple); box-shadow: 0 0 40px rgba(192, 132, 252, 0.7);}
+        100%{border-color: var(--accent-pink); box-shadow: 0 0 20px var(--shadow-color);}
+    }
+    
+    @keyframes gradientShift {
+        0%{background-position: 0% 50%;}
+        50%{background-position: 100% 50%;}
+        100%{background-position: 0% 50%;}
+    }
+    
+    @keyframes pulse {
+        0%{transform: scale(1);}
+        50%{transform: scale(1.05);}
+        100%{transform: scale(1);}
+    }
+    
+    @media(max-width: 992px){
+        header{
+            flex-direction:column-reverse;
+            height:auto;
+            padding:60px 6%;
+            text-align:center;
+            gap: 40px;
+        }
+        
+        .text-zone{
+            max-width:100%;
+            text-align:center;
+        }
+        
+        .text-zone h1{
+            font-size: 3.5rem;
+        }
+        
+        .tagline {
+            margin: 20px auto;
+            max-width: 100%;
+        }
+        
+        .pfp img{
+            width:280px;
+            height:280px;
+        }
+        
+        .music-player {
+            bottom: 80px;
+            right: 10px;
+            padding: 8px 15px;
+        }
+        
+        .music-info {
+            max-width: 150px;
+        }
+    }
+    
+    @media(max-width: 768px){
+        .text-zone h1{
+            font-size: 2.8rem;
+        }
+        
+        .text-zone h2{
+            font-size: 1.3rem;
+        }
+        
+        .pfp img{
+            width:240px;
+            height:240px;
+        }
+        
+        .skills h1, .contact h1 {
+            font-size: 2.2rem;
+        }
+        
+        .skill-box, .contact-links {
+            justify-content: center;
+        }
+        
+        .flower-instruction {
+            font-size: 30px;
+        }
+        
+        .theme-toggle {
+            top: 10px;
+            right: 10px;
+        }
+        
+        .music-player {
+            flex-direction: column;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            padding: 0;
+            justify-content: center;
+        }
+        
+        .music-info, .volume-slider {
+            display: none;
+        }
+    }
+    
+    @media(max-width: 480px){
+        .text-zone h1{
+            font-size: 2.2rem;
+        }
+        
+        .pfp img{
+            width:200px;
+            height:200px;
+        }
+        
+        .skill {
+            padding: 14px 18px;
+            font-size: 1rem;
+        }
+        
+        .contact-link {
+            padding: 12px 20px;
+            font-size: 0.9rem;
+        }
+        
+        .flower-instruction {
+            font-size: 24px;
+            opacity: 0.3;
+        }
+        
+        .clean-btn {
+            font-size: 12px;
+            padding: 0 0 10px 15px;
+        }
+    }
+    
+    .section-hidden {
+        opacity: 0;
+        transform: translateY(50px);
+        transition: all 0.8s;
+    }
+    
+    .section-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    
+    .sparkle {
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        background-color: #fff;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 100;
+        box-shadow: 0 0 10px 2px var(--accent-pink);
+        opacity: 0;
+    }
+</style>
+</head>
+<body>
+
+<div class="" id="themeToggle">
+</div>
+
+<div class="music-player" id="musicPlayer">
+    <div class="music-info">
+        <div class="music-title">Ik Kudi - Diljit Dosanjh</div>
+        <div class="music-artist">Background Music</div>
+    </div>
+    <div class="music-controls">
+        <button class="music-btn" id="playBtn">
+            <i class="fas fa-play"></i>
+        </button>
+        <button class="music-btn" id="pauseBtn">
+            <i class="fas fa-pause"></i>
+        </button>
+        <input type="range" min="0" max="100" value="50" class="volume-slider" id="volumeSlider">
+    </div>
+</div>
+
+<div class="flower-container">
+   <canvas id="canvas"></canvas>
+   <div class="clean-btn">
+      SUDIPX
+   </div>
+</div>
+
+<div class="flower-instruction"></div>
+
+<script type="x-shader/x-fragment" id="fragmentShader">
+    #define PI 3.14159265359
+
+    uniform float u_ratio;
+    uniform vec2 u_cursor;
+    uniform float u_stop_time;
+    uniform float u_clean;
+    uniform vec2 u_stop_randomizer;
+
+    uniform sampler2D u_texture;
+    varying vec2 vUv;
+
+
+    vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+    vec2 mod289(vec2 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+    vec3 permute(vec3 x) { return mod289(((x*34.0)+1.0)*x); }
+    float snoise(vec2 v) {
+        const vec4 C = vec4(0.211324865405187, 0.366025403784439, -0.577350269189626, 0.024390243902439);
+        vec2 i = floor(v + dot(v, C.yy));
+        vec2 x0 = v - i + dot(i, C.xx);
+        vec2 i1;
+        i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
+        vec4 x12 = x0.xyxy + C.xxzz;
+        x12.xy -= i1;
+        i = mod289(i);
+        vec3 p = permute(permute(i.y + vec3(0.0, i1.y, 1.0)) + i.x + vec3(0.0, i1.x, 1.0));
+        vec3 m = max(0.5 - vec3(dot(x0, x0), dot(x12.xy, x12.xy), dot(x12.zw, x12.zw)), 0.0);
+        m = m*m;
+        m = m*m;
+        vec3 x = 2.0 * fract(p * C.www) - 1.0;
+        vec3 h = abs(x) - 0.5;
+        vec3 ox = floor(x + 0.5);
+        vec3 a0 = x - ox;
+        m *= 1.79284291400159 - 0.85373472095314 * (a0*a0 + h*h);
+        vec3 g;
+        g.x = a0.x * x0.x + h.x * x0.y;
+        g.yz = a0.yz * x12.xz + h.yz * x12.yw;
+        return 130.0 * dot(m, g);
+    }
+
+
+    float get_flower_shape(vec2 _p, float _pet_n, float _angle, float _outline) {
+        _angle *= 3.;
+
+        _p = vec2(_p.x * cos(_angle) - _p.y * sin(_angle),
+        _p.x * sin(_angle) + _p.y * cos(_angle));
+
+        float a = atan(_p.y, _p.x);
+
+        float flower_sectoral_shape = pow(abs(sin(a * _pet_n)), .4) + .25;
+
+        vec2 flower_size_range = vec2(.03, .1);
+        float size = flower_size_range[0] + u_stop_randomizer[0] * flower_size_range[1];
+
+        float flower_radial_shape = pow(length(_p) / size, 2.);
+        flower_radial_shape -= .1 * sin(8. * a); // add noise
+        flower_radial_shape = max(.1, flower_radial_shape);
+        flower_radial_shape += smoothstep(0., 0.03, -_p.y + .2 * abs(_p.x));
+
+        float grow_time = step(.25, u_stop_time) * pow(u_stop_time, .3);
+        float flower_shape = 1. - smoothstep(0., flower_sectoral_shape, _outline * flower_radial_shape / grow_time);
+
+        flower_shape *= (1. - step(1., grow_time));
+
+        return flower_shape;
+    }
+
+    float get_stem_shape(vec2 _p, vec2 _uv, float _w, float _angle) {
+
+		  _w = max(.004, _w);
+		 
+        float x_offset = _p.y * sin(_angle);
+        x_offset *= pow(3. * _uv.y, 2.);
+        _p.x -= x_offset;
+
+        float noise_power = .5;
+        float cursor_horizontal_noise = noise_power * snoise(2. * _uv * u_stop_randomizer[0]);
+        cursor_horizontal_noise *= pow(dot(_p.y, _p.y), .6);// moise to be zero at cursor
+        cursor_horizontal_noise *= pow(dot(_uv.y, _uv.y), .3);// moise to be zero at bottom
+        _p.x += cursor_horizontal_noise;
+
+        float left = smoothstep(-_w, 0., _p.x);
+        float right = 1. - smoothstep(0., _w, _p.x);
+        float stem_shape = left * right;
+
+        float grow_time = 1. - smoothstep(0., .2, u_stop_time);
+        float stem_top_mask = smoothstep(0., pow(grow_time, .5), .03 -_p.y);
+        stem_shape *= stem_top_mask;
+
+        
+        stem_shape *= (1. - step(.17, u_stop_time));
+
+        return stem_shape;
+    }
+
+    void main() {
+
+        vec3 base = texture2D(u_texture, vUv).xyz;
+
+        vec2 uv = vUv;
+        uv.x *= u_ratio;
+        vec2 cursor = vUv - u_cursor.xy;
+        cursor.x *= u_ratio;
+        
+        vec3 stem_color = vec3(.1 + u_stop_randomizer[0] * .6, .6, .2);
+        vec3 flower_color = vec3(.6 + .5 * u_stop_randomizer[1], .1, .9 - .5 * u_stop_randomizer[1]);
+
+        float angle = .5 * (u_stop_randomizer[0] - .5);
+
+        float stem_shape = get_stem_shape(cursor, uv, .003, angle);
+        stem_shape += get_stem_shape(cursor + vec2(0., .2 + .5 * u_stop_randomizer[0]), uv, .003, angle);
+        float stem_mask = 1. - get_stem_shape(cursor, uv, .004, angle);
+        stem_mask -= get_stem_shape(cursor + vec2(0., .2 + .5 * u_stop_randomizer[0]), uv, .004, angle);
+
+        float petals_back_number = 1. + floor(u_stop_randomizer[0] * 2.);
+        float angle_offset = -(2. * step(0., angle) - 1.) * .1 * u_stop_time;
+        float flower_back_shape = get_flower_shape(cursor, petals_back_number, angle + angle_offset, 1.5);
+        float flower_back_mask = 1. - get_flower_shape(cursor, petals_back_number, angle + angle_offset, 1.6);
+
+        float petals_front_number = 2. + floor(u_stop_randomizer[1] * 2.);
+        float flower_front_shape = get_flower_shape(cursor, petals_front_number, angle, 1.);
+        float flower_front_mask = 1. - get_flower_shape(cursor, petals_front_number, angle, .95);
+
+        vec3 color = base;
+        color *= stem_mask;
+        color *= flower_back_mask;
+        color *= flower_front_mask;
+
+        color += (stem_shape * stem_color);
+
+        color += (flower_back_shape * (flower_color + vec3(0., .8 * u_stop_time, 0.)));
+        color += (flower_front_shape * flower_color);
+
+        color.r *= 1. - (.5 * flower_back_shape * flower_front_shape);
+        color.b *= 1. - (flower_back_shape * flower_front_shape);
+
+
+        color *= u_clean;
+
+        gl_FragColor = vec4(color, 1.);
+    }
+
+</script>
+
+<script type="x-shader/x-vertex" id="vertexShader">
+    varying vec2 vUv;
+    void main() {
+        vUv = uv;
+        gl_Position = vec4(position, 1.);
+    }
+</script>
+
+<div class="bg-circle circle-1"></div>
+<div class="bg-circle circle-2"></div>
+<div class="bg-circle circle-3"></div>
+
+<div class="floating-icons">
+    <div class="floating-icon"><i class="fas fa-microphone-alt"></i></div>
+    <div class="floating-icon"><i class="fas fa-film"></i></div>
+    <div class="floating-icon"><i class="fas fa-magic"></i></div>
+    <div class="floating-icon"><i class="fas fa-heart"></i></div>
+    <div class="floating-icon"><i class="fas fa-star"></i></div>
+</div>
+
+<header>
+    <div class="text-zone">
+        <h1>FLORA~💜</h1>
+        <h2>Voice Artist • Vibro Editor • Tech Explorer</h2>
+        <p class="tagline">Soft soul with sharp skills ✨ Turning <span class="highlight">voice</span>, <span class="highlight">visuals</span> & <span class="highlight">tech</span> into pure magic 💕 Crafting digital experiences with passion and precision.</p>
+    </div>
+
+    <div class="pfp">
+        <img src="https://files.catbox.moe/zhnjvh.jpg" alt="profile" />
+    </div>
+</header>
+
+
+<section class="skills section-hidden">
+    <h1>Skills & Magic</h1>
+    <div class="skill-box">
+        <div class="skill"><i class="fas fa-microphone-alt"></i> Voice Artist</div>
+        <div class="skill"><i class="fas fa-film"></i>Video Editor</div>
+        <div class="skill"><i class="fas fa-palette"></i> Creative Aesthetics</div>
+       
+    </div>
+</section>
+
+
+<section class="contact section-hidden">
+    <h1>Let's Create Magic Together</h1>
+    <p style="color:var(--text-secondary); margin-bottom:25px; max-width:700px;">Feel free to reach out for collaborations, projects, or just to connect!</p>
+    <div class="contact-links">
+        <a href="https://www.instagram.com/shineey_11?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="contact-link"><i class="fab fa-instagram"></i> Instagram</a>
+        <a href="https://t.me/myuniverse546" class="contact-link"><i class="fab fa-telegram"></i> Telegram</a>
+       
+    </div>
+</section>
+
+
+<footer>
+    © 2025 <span>Sudipx</span> — made with <i class="fas fa-heart" style="color:var(--accent-pink);"></i> love, sparkle & pink energy 💖
+</footer>
+
+<audio id="backgroundMusic" loop>
+    <source src="https://github.com/DevSudipx/DoYouLoveMe/raw/main/ik_kudi_full_clip.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<script type="module">
+import * as THREE from 'https://cdn.skypack.dev/three@0.133.1/build/three.module'
+
+const themeToggle = document.getElementById('themeToggle');
+const body = document.body;
+
+const savedTheme = localStorage.getItem('portfolio-theme') || 'night';
+body.setAttribute('data-theme', savedTheme);
+
+themeToggle.addEventListener('click', () => {
+    const currentTheme = body.getAttribute('data-theme');
+    const newTheme = currentTheme === 'night' ? 'day' : 'night';
+    body.setAttribute('data-theme', newTheme);
+    localStorage.setItem('portfolio-theme', newTheme);
+    
+    body.style.transition = 'background-color 0.5s ease, color 0.5s ease';
+});
+
+const backgroundMusic = document.getElementById('backgroundMusic');
+const playBtn = document.getElementById('playBtn');
+const pauseBtn = document.getElementById('pauseBtn');
+const volumeSlider = document.getElementById('volumeSlider');
+
+
+window.addEventListener('load', () => {
+   
+    const playPromise = backgroundMusic.play();
+    
+    if (playPromise !== undefined) {
+        playPromise.catch(error => {
+            
+            console.log("Auto-play prevented. User interaction required.");
+        });
+    }
+});
+
+playBtn.addEventListener('click', () => {
+    backgroundMusic.play();
+    playBtn.style.display = 'none';
+    pauseBtn.style.display = 'block';
+});
+
+pauseBtn.addEventListener('click', () => {
+    backgroundMusic.pause();
+    playBtn.style.display = 'block';
+    pauseBtn.style.display = 'none';
+});
+
+volumeSlider.addEventListener('input', () => {
+    backgroundMusic.volume = volumeSlider.value / 100;
+});
+
+
+backgroundMusic.volume = volumeSlider.value / 100;
+
+const canvasEl = document.querySelector('#canvas')
+const cleanBtn = document.querySelector('.clean-btn')
+
+const pointer = {
+	x: 0.66,
+	y: 0.3,
+	clicked: true,
+	vanishCanvas: false
+}
+
+window.setTimeout(() => {
+	pointer.x = 0.75
+	pointer.y = 0.5
+	pointer.clicked = true
+}, 700)
+
+let basicMaterial, shaderMaterial
+let renderer = new THREE.WebGLRenderer({
+	canvas: canvasEl,
+	alpha: true,
+	antialias: true
+})
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+let sceneShader = new THREE.Scene()
+let sceneBasic = new THREE.Scene()
+let camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 10)
+let clock = new THREE.Clock()
+
+let renderTargets = [
+	new THREE.WebGLRenderTarget(window.innerWidth, window.innerHeight),
+	new THREE.WebGLRenderTarget(window.innerWidth, window.innerHeight),
+]
+
+createPlane()
+updateSize()
+
+window.addEventListener('resize', () => {
+	updateSize()
+	cleanCanvas()
+})
+
+render()
+
+let isTouchScreen = false
+
+window.addEventListener('click', e => {
+	if (!isTouchScreen) {
+		const interactiveSelectors = 'a, button, .skill, .contact-link, .pfp img, .theme-toggle, .music-player, .music-btn, #volumeSlider';
+		if (!e.target.closest(interactiveSelectors)) {
+			pointer.x = e.pageX / window.innerWidth
+			pointer.y = e.pageY / window.innerHeight
+			pointer.clicked = true
+		}
+	}
+})
+
+window.addEventListener('touchstart', e => {
+	isTouchScreen = true
+	const interactiveSelectors = 'a, button, .skill, .contact-link, .pfp img, .theme-toggle, .music-player, .music-btn, #volumeSlider';
+	if (!e.target.closest(interactiveSelectors)) {
+		pointer.x = e.targetTouches[0].pageX / window.innerWidth
+		pointer.y = e.targetTouches[0].pageY / window.innerHeight
+		pointer.clicked = true
+	}
+})
+
+cleanBtn.addEventListener('click', cleanCanvas)
+
+function cleanCanvas() {
+	pointer.vanishCanvas = true
+	setTimeout(() => {
+		pointer.vanishCanvas = false
+	}, 50)
+}
+
+function createPlane() {
+	shaderMaterial = new THREE.ShaderMaterial({
+		uniforms: {
+			u_stop_time: { type: 'f', value: 0 },
+			u_stop_randomizer: {
+				type: 'v2',
+				value: new THREE.Vector2(Math.random(), Math.random()),
+			},
+			u_cursor: { type: 'v2', value: new THREE.Vector2(pointer.x, pointer.y) },
+			u_ratio: { type: 'f', value: window.innerWidth / window.innerHeight },
+			u_texture: { type: 't', value: null },
+			u_clean: { type: 'f', value: 1 },
+		},
+		vertexShader: document.getElementById('vertexShader').textContent,
+		fragmentShader: document.getElementById('fragmentShader').textContent,
+	})
+	basicMaterial = new THREE.MeshBasicMaterial()
+	const planeGeometry = new THREE.PlaneGeometry(2, 2)
+	const planeBasic = new THREE.Mesh(planeGeometry, basicMaterial)
+	const planeShader = new THREE.Mesh(planeGeometry, shaderMaterial)
+	sceneBasic.add(planeBasic)
+	sceneShader.add(planeShader)
+}
+
+function render() {
+	shaderMaterial.uniforms.u_clean.value = pointer.vanishCanvas ? 0 : 1
+	shaderMaterial.uniforms.u_texture.value = renderTargets[0].texture
+
+	if (pointer.clicked) {
+		shaderMaterial.uniforms.u_cursor.value = new THREE.Vector2(
+			pointer.x,
+			1 - pointer.y
+		)
+		shaderMaterial.uniforms.u_stop_randomizer.value = new THREE.Vector2(
+			Math.random(),
+			Math.random()
+		)
+		shaderMaterial.uniforms.u_stop_time.value = 0
+		pointer.clicked = false
+	}
+	shaderMaterial.uniforms.u_stop_time.value += clock.getDelta()
+
+	renderer.setRenderTarget(renderTargets[1])
+	renderer.render(sceneShader, camera)
+	basicMaterial.map = renderTargets[1].texture
+	renderer.setRenderTarget(null)
+	renderer.render(sceneBasic, camera)
+
+	let tmp = renderTargets[0]
+	renderTargets[0] = renderTargets[1]
+	renderTargets[1] = tmp
+
+	requestAnimationFrame(render)
+}
+
+function updateSize() {
+	shaderMaterial.uniforms.u_ratio.value = window.innerWidth / window.innerHeight
+	renderer.setSize(window.innerWidth, window.innerHeight)
+}
+
+const glow = document.createElement('div');
+glow.style.position = 'fixed';
+glow.style.top = '0';
+glow.style.left = '0';
+glow.style.width = '300px';
+glow.style.height = '300px';
+glow.style.borderRadius = '50%';
+glow.style.background = 'radial-gradient(circle, rgba(255, 95, 162, 0.4), transparent 70%)';
+glow.style.pointerEvents = 'none';
+glow.style.filter = 'blur(60px)';
+glow.style.zIndex = '15'; 
+glow.style.opacity = '0.7';
+document.body.appendChild(glow);
+
+document.addEventListener('mousemove', (e) => {
+    const x = e.clientX - 150;
+    const y = e.clientY - 150;
+    glow.style.transform = `translate(${x}px, ${y}px)`;
+    
+    if (Math.random() > 0.9) {
+        createSparkle(e.clientX, e.clientY);
+    }
+});
+
+function createSparkle(x, y) {
+    const sparkle = document.createElement('div');
+    sparkle.classList.add('sparkle');
+    sparkle.style.left = `${x}px`;
+    sparkle.style.top = `${y}px`;
+    sparkle.style.zIndex = '100';
+    document.body.appendChild(sparkle);
+    
+    const angle = Math.random() * Math.PI * 2;
+    const distance = 20 + Math.random() * 40;
+    const targetX = x + Math.cos(angle) * distance;
+    const targetY = y + Math.sin(angle) * distance;
+    
+    sparkle.animate([
+        { transform: 'translate(0, 0)', opacity: 1 },
+        { transform: `translate(${targetX - x}px, ${targetY - y}px)`, opacity: 0 }
+    ], {
+        duration: 800 + Math.random() * 800,
+        easing: 'cubic-bezier(0.2, 0, 0.8, 1)'
+    });
+    
+    setTimeout(() => {
+        sparkle.remove();
+    }, 1500);
+}
+
+
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('section-visible');
+        }
+    });
+}, observerOptions);
+
+document.querySelectorAll('.section-hidden').forEach(section => {
+    observer.observe(section);
+});
+
+document.addEventListener('click', (e) => {
+    const portfolioSelectors = '.skill, .contact-link, .pfp img, header, section, .theme-toggle';
+    if (e.target.closest(portfolioSelectors)) {
+        for (let i = 0; i < 5; i++) {
+            setTimeout(() => {
+                createSparkle(e.clientX, e.clientY);
+            }, i * 80);
+        }
+    }
+});
+
+document.querySelectorAll('.skill').forEach(skill => {
+    skill.addEventListener('mouseenter', function() {
+        this.style.animation = 'pulse 0.5s ease';
+    });
+    
+    skill.addEventListener('mouseleave', function() {
+        this.style.animation = '';
+    });
+});
+
+window.addEventListener('load', () => {
+    document.body.style.opacity = '0';
+    document.body.style.transition = 'opacity 1s';
+    
+    setTimeout(() => {
+        document.body.style.opacity = '1';
+        
+        setTimeout(() => {
+            for (let i = 0; i < 3; i++) {
+                setTimeout(() => {
+                    pointer.x = Math.random() * 0.8 + 0.1;
+                    pointer.y = Math.random() * 0.6 + 0.2;
+                    pointer.clicked = true;
+                }, i * 300);
+            }
+        }, 1000);
+    }, 100);
+});
+</script>
+</body>
+</html>
